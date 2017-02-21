@@ -1,0 +1,20 @@
+---
+- name: Copy and execute a script.
+  hosts: add_to_sleeper
+  remote_user: ec2-user
+  become: true
+  
+  tasks:
+     - name: Copy the shell script
+       copy: src=/home/gtkachenko/ansible/playbooks/scripts dest=/home/ec2-user owner=ec2-user group=ec2-user mode=0777
+       
+     - name: Execute teh script
+       script: /home/gtkachenko/ansible/playbooks/scripts
+     
+     - name: Test chconfig
+       shell: chkconfig --list | grep SLTC.init || echo "Service not found"
+       ignore_errors: true
+       register: output
+     
+     - name: Debug
+       debug: msg={{ output.stdout }}

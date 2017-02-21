@@ -1,0 +1,15 @@
+---
+- hosts: test
+  user: ec2-user
+  become: true
+  tasks:
+
+   - name: Add cron task for clear sssd cache
+     cron: minute="50" hour="15" weekday="mon"
+           name="Clear sssd cache weekly schedule"
+           cron_file="clear-sssd-cache"
+           user="root"
+           job="/home/ec2-user/clear_sssd_cache.sh"
+   
+   - name: Restart cron daemon
+     service: name=crond state=restarted

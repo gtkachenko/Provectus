@@ -1,0 +1,8 @@
+---
+- hosts: 10.120.9.200
+  user: ec2-user
+  tasks:
+
+  - name: Restarting sssd service
+    service: name=sssd state=restarted
+    sudo: yes
