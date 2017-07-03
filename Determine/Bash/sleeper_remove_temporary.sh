@@ -39,7 +39,7 @@ else
 fi
 
 colecho WARN "Restartind sleeper for applying changes"
-#ssh -t -t ${os_user}@${host} -i ${key} "
-#sudo /opt/auto/switcher_daemon_down.pl -a restart
-#"
+ssh -t -t ${os_user}@${host} -i ${key} "
+sudo /opt/auto/switcher_daemon_down.pl -a restart
+"
 
