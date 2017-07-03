@@ -1,0 +1,14 @@
+version: '2'
+services:
+  
+  apache2:
+    build: ./apache/
+    ports:
+      - 443:443
+
+
+  shibboleth-idp:
+    build: ./shibboleth-idp/
+    links:
+      - apache2
+
