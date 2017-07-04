@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash
 os_user='ec2-user'
 host='10.100.1.44'
 key='/home/gtkachenko/.ssh/Storage.pem'
@@ -43,3 +43,12 @@ ssh -t -t ${os_user}@${host} -i ${key} "
 sudo /opt/auto/switcher_daemon_down.pl -a restart
 "
 
+colecho INFO "Getting ip addres EC2-instance"
+worker_propertie=$(ssh -t -t ${os_user}@${host} -i ${key} " cat /opt/auto/tomcat.workers  | grep $customer ")
+instance_ip=$(echo $worker_propertie | awk -F "=" '{print $2}')
+
+colecho INFO "Getting instance id"
+instance_id=$(aws ec2 describe-instances --filter "Name=private-ip-address ,Values=${instance_ip}" | jq  '.Reservations[].Instances[] | .InstanceId' | cut -f 2 -d \")
+
+colecho WARN "Removing tag Sleeper for $customer from AWS"
+aws ec2 delete-tags --resources ${instance_id} --tags Key=Sleeper
