@@ -1,0 +1,9 @@
+---
+- hosts: selectica_production_area
+  user: ec2-user
+  become: yes
+  tasks:
+
+    - name: Get SCLM path
+      script: /home/gtkachenko/ansible/playbooks/scripts/get_path.sh
+      ignore_errors: true
