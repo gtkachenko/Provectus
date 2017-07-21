@@ -1,5 +1,5 @@
 ---
-- hosts: 10.120.9.200
+- hosts: *
   user: ec2-user
   tasks:
 
