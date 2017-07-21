@@ -48,14 +48,14 @@ else:
 list_folder = os.listdir(attachment_path)
 
 for item in list_folder:
- if item == '1048576':
-  source_dir=os.path.join(attachment_path, '1048576')
- elif item == '5005':
-  source_dir=os.path.join(attachment_path, '5005')
- elif item == '1100':
-  source_dir=os.path.join(attachment_path, '1100')
- elif item == '7847':
-  source_dir=os.path.join(attachment_path, '7847')
+ if item == '*':
+  source_dir=os.path.join(attachment_path, '*')
+ elif item == '*':
+  source_dir=os.path.join(attachment_path, '*')
+ elif item == '*':
+  source_dir=os.path.join(attachment_path, '*')
+ elif item == '*':
+  source_dir=os.path.join(attachment_path, '*')
 
 for root, dirs, files, in os.walk(source_dir):
  for name in files:
