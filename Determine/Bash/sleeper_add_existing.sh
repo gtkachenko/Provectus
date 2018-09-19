@@ -1,7 +1,7 @@
 #!/bin/bash
-os_user='ec2-user'
-host='10.100.1.44'
-key='/home/gtkachenko/.ssh/Storage.pem'
+os_user='user'
+host='*'
+key='*'
 
 function colecho {
 	case "$1" in
