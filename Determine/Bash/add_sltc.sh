@@ -1,4 +1,6 @@
 #!/bin/bash -x
+set -e
+
 cat_base=$(ps aux | grep java | grep -v grep | awk -F "catalina.base=" '{print $2}' | cut -d' ' -f1)
 cat_home=$(ps aux | grep java | grep -v grep | awk -F "catalina.home=" '{print $2}' | cut -d' ' -f1)
 cat_tmp=$(ps aux | grep java | grep -v grep | awk -F "java.io.tmpdir=" '{print $2}' | cut -d' ' -f1)
